@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
     },
     descriptionText: {
         fontSize: 14
-    },//dropdown
+    },
     dropdown: {
         height: 50,
         borderColor: 'gray',
