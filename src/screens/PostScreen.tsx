@@ -1,14 +1,45 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React from 'react';
+import { Alert } from 'react-native';
+import { useAddPostMutation, useLazyGetPostQuery } from '../services/services';
+import { useNavigation } from '@react-navigation/native';
+import { useToast } from "react-native-toast-notifications";
+import { PostLayout } from '../components';
 
-const PostScreen = () => {
-  return (
-    <View>
-      <Text>PostScreen</Text>
-    </View>
-  )
-}
+const AddPostScreen = () => {
+    const [addPost, isLoading] = useAddPostMutation();
+    const toast = useToast();
+    const [getPost] = useLazyGetPostQuery();
+    const navigation = useNavigation()
+    const handleAddPost = () => {
+        const postPayload = {
+            name: 'tarantino',
+            content: 'The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son.',
+            category: 'drama'
+        };
+        addPost(postPayload)
+            .unwrap()
+            .then(() => {
+                getPost()
+                navigation.goBack()
+                toast.show("Post Added successfully", {
+                    type: "success",
+                    placement: "top",
+                    duration: 4000,
+                    animationType: "slide-in",
+                });
+            })
+            .catch((error: any) => {
+                toast.show("Post failed", {
+                    type: "danger",
+                    placement: "top",
+                    duration: 4000,
+                    animationType: "slide-in",
+                });
+                console.error(error);
+            });
+    };
 
-export default PostScreen
 
-const styles = StyleSheet.create({})
+    return <PostLayout handleAddPost={handleAddPost} />
+};
+export default AddPostScreen;
