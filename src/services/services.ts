@@ -1,5 +1,4 @@
 
-
 import { api } from "./api";
 
 export const servicesApi = api.injectEndpoints({
@@ -20,9 +19,16 @@ export const servicesApi = api.injectEndpoints({
                 body,
             }),
         }),
+        modifyPost: build.mutation<any, { id: number, body: any }>({
+            query: ({ id, body }) => ({
+                url: `/blog-post/${id}`,
+                method: "PATCH",
+                body,
+            }),
+        }),
     }),
 
 
 });
 
-export const { useLazyGetPostQuery, useDeletePostMutation, useAddPostMutation } = servicesApi;
+export const { useLazyGetPostQuery, useDeletePostMutation, useAddPostMutation, useModifyPostMutation } = servicesApi;

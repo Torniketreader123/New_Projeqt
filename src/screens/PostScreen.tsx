@@ -1,5 +1,4 @@
 import React from 'react';
-import { Alert } from 'react-native';
 import { useAddPostMutation, useLazyGetPostQuery } from '../services/services';
 import { useNavigation } from '@react-navigation/native';
 import { useToast } from "react-native-toast-notifications";
