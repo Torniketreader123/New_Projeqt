@@ -1,4 +1,6 @@
-export enum Routes {
+export enum ScreenRoutes {
     blog = "blog",
-    Post = "Post",
+    addPost = "addPost",
+    blogDetail = "blogDetail",
+    editPost = 'editPost'
 }

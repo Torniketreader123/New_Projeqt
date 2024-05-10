@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, TouchableOpacity, StyleSheet } from 'react-native';
-import { Label,  } from '../atoms';
+
+import { Label } from '../atoms';
 
 interface ButtonGroupProps {
     buttons: string[];
@@ -35,7 +36,7 @@ const styles = StyleSheet.create({
         marginVertical: 16,
         flexDirection: 'row',
         justifyContent: 'space-between',
-   
+
     },
     button: {
         justifyContent: 'center',
@@ -43,18 +44,17 @@ const styles = StyleSheet.create({
         width: '30%',
         height: 30,
         borderWidth: 1,
-        borderColor: 'gray',
+        borderColor: '#E50914',
         borderRadius: 5,
-
     },
     selectedButton: {
-        backgroundColor: 'blue',
+        backgroundColor: '#E50914',
     },
     buttonText: {
-        color: 'green'
+        color: '#fff',
     },
     selectedButtonText: {
-        color: 'red'
+        color: '#fff',
     }
 });
 

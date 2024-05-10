@@ -10,14 +10,14 @@ interface ButtonProps {
 const Button = ({ text, onPress }: ButtonProps) => {
     return (
         <TouchableOpacity onPress={onPress} style={styles.button}>
-            <Label text={text} />
+            <Label text={text} style={styles.text} />
         </TouchableOpacity>
     );
 };
 
 const styles = StyleSheet.create({
     button: {
-        backgroundColor: 'blue',
+        backgroundColor: '#E50914',
         padding: 10,
         borderRadius: 5,
         alignItems: 'center',
@@ -25,6 +25,7 @@ const styles = StyleSheet.create({
     text: {
         color: 'white',
         fontWeight: 'bold',
+        letterSpacing: 1,
     },
 });
 

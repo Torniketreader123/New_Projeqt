@@ -5,7 +5,7 @@ import { BlogLayout } from '../components';
 import { useDeletePostMutation } from '../services/services';
 import { Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { Routes } from '../themes';
+import { ScreenRoutes } from '../themes';
 const BlogScreen = () => {
     const navigation = useNavigation()
     const [getPost] = useLazyGetPostQuery();
@@ -25,11 +25,16 @@ const BlogScreen = () => {
         setSelectedCategoryIndex(index);
     };
     const handleNavigationToDetail = (item) => {
-        navigation.navigate(Routes.blogDetail, { item })
+        navigation.navigate(ScreenRoutes.blogDetail, { item })
     }
     const handleNavigationToAdd = () => {
-        navigation.navigate(Routes.Post)
+        navigation.navigate(ScreenRoutes.addPost)
     }
+    const handleNavigationToEdit = (item) => {
+        navigation.navigate(ScreenRoutes.editPost, { item })
+    }
+
+
 
     const handleDeletePost = (id: number) => {
         deletePost(id)
@@ -55,6 +60,7 @@ const BlogScreen = () => {
             handleDelete={handleDeletePost}
             onDetail={handleNavigationToDetail}
             handleAddPost={handleNavigationToAdd}
+            handleEdit={handleNavigationToEdit}
         />
     );
 };

@@ -1,11 +1,11 @@
 import React, { memo } from 'react';
 import { View, Text, StyleSheet, ActivityIndicator, FlatList, TouchableOpacity, ImageBackground } from 'react-native';
-import { ButtonGroup, Card } from '../moleculs';
 
+import { SafeAreaView } from 'react-native-safe-area-context';
 
+import { BlogHeader, ButtonGroup, Card, MainHeader } from '..';
 
-
-const BlogLayout = ({ categories, selectedCategoryIndex, handleCategoryChange, isLoading, isError, postsData, handleDelete, onDetail, handleAddPost }) => {
+const BlogLayout = ({ categories, selectedCategoryIndex, handleCategoryChange, isLoading, isError, postsData, handleDelete, onDetail, handleAddPost, handleEdit }) => {
     const renderEmptyComponent = () => {
         return (
             <View>
@@ -14,10 +14,8 @@ const BlogLayout = ({ categories, selectedCategoryIndex, handleCategoryChange, i
         )
     }
     return (
-        <View style={styles.container}>
-            <TouchableOpacity onPress={handleAddPost}>
-                <Text>add new post</Text>
-            </TouchableOpacity>
+        <SafeAreaView style={styles.container}>
+            <MainHeader MainText='Blog Screen' RightText='Add Post' rightOnPress={handleAddPost} />
 
             <ButtonGroup buttons={categories} selectedIndex={selectedCategoryIndex} onButtonPress={handleCategoryChange} />
 
@@ -34,8 +32,7 @@ const BlogLayout = ({ categories, selectedCategoryIndex, handleCategoryChange, i
                         <Card
                             title={item.name}
                             description={item.content}
-                            imageUrl={item.imageUrl}
-                            onEdit={() => console.log('edit')}
+                            onEdit={() => handleEdit(item)}
                             onDelete={() => handleDelete(item.id)}
                             onDetail={() => onDetail(item)}
                         />
@@ -44,7 +41,7 @@ const BlogLayout = ({ categories, selectedCategoryIndex, handleCategoryChange, i
                 />
             )
             }
-        </View >
+        </SafeAreaView >
     );
 };
 
@@ -52,6 +49,8 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         paddingHorizontal: 16,
+        backgroundColor: '#161515',
+        color: "white"
     },
     buttonGroup: {
         flexDirection: 'row',
@@ -91,8 +90,10 @@ const styles = StyleSheet.create({
     },
     imageStyle: {
         resizeMode: 'cover',
-       
     },
+    textColor: {
+        color: "white"
+    }
 });
 
 export default memo(BlogLayout);

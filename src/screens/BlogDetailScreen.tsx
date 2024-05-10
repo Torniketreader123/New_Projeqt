@@ -1,6 +1,6 @@
 
 import { BlogDetailLayout } from '../components';
-import { Route } from '@react-navigation/native';
+
 const BlogScreen = ({ route }) => {
     const { item } = route.params;
     return (
