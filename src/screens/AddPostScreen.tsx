@@ -2,24 +2,27 @@ import React from 'react';
 import { useAddPostMutation, useLazyGetPostQuery } from '../services/services';
 import { useNavigation } from '@react-navigation/native';
 import { useToast } from "react-native-toast-notifications";
-import { PostLayout } from '../components';
-
+import { AddPostForm } from '../components/forms';
 const AddPostScreen = () => {
-    const [addPost, isLoading] = useAddPostMutation();
+
+    const [addPost] = useAddPostMutation();
     const toast = useToast();
     const [getPost] = useLazyGetPostQuery();
     const navigation = useNavigation()
-    const handleAddPost = () => {
+    const handleNavigationBack = () => {
+        navigation.goBack()
+    }
+    const handleAddPost = (name: string, content: string, value: string) => {
         const postPayload = {
-            name: 'tarantino',
-            content: 'The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son.',
-            category: 'drama'
+            name: name,
+            content: content,
+            category: value
         };
         addPost(postPayload)
             .unwrap()
             .then(() => {
-                getPost()
-                navigation.goBack()
+                getPost();
+                navigation.goBack();
                 toast.show("Post Added successfully", {
                     type: "success",
                     placement: "top",
@@ -27,18 +30,16 @@ const AddPostScreen = () => {
                     animationType: "slide-in",
                 });
             })
-            .catch((error: any) => {
+            .catch(() => {
                 toast.show("Post failed", {
                     type: "danger",
                     placement: "top",
                     duration: 4000,
                     animationType: "slide-in",
                 });
-                console.error(error);
             });
     };
 
-
-    return <PostLayout handleAddPost={handleAddPost} />
+    return <AddPostForm handleAddPost={handleAddPost} handleBack={handleNavigationBack} />
 };
 export default AddPostScreen;

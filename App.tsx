@@ -1,18 +1,25 @@
 import React from 'react';
-import DashboarStackNavigator from './src/navigations/DashboardStackNvigator';
 import { Provider } from 'react-redux';
 import store from './src/store/store';
-
-
-
+import { ToastProvider } from 'react-native-toast-notifications'
+import { GestureHandlerRootView } from "react-native-gesture-handler";
+import StackNavigator from './src/navigations/DashboardStackNvigator';
 
 
 const App = () => {
 
   return (
+<GestureHandlerRootView>
     <Provider store={store}>
-<DashboarStackNavigator/>
-</Provider>
+      <ToastProvider>
+        <StackNavigator />
+      </ToastProvider>
+
+    </Provider>
+    </GestureHandlerRootView>
+
+
+
   )
 
 }

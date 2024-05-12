@@ -1,9 +1,15 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
-import {  Label } from '../atoms';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { Label } from '../atoms';
 
-
-const Card = ({ title, description, onEdit, onDelete, onDetail }) => {
+interface CardProps {
+    title: string;
+    description: string;
+    onEdit: () => void;
+    onDelete: () => void;
+    onDetail: () => void;
+}
+const Card = ({ title, description, onEdit, onDelete, onDetail }:CardProps) => {
     return (
         <View style={styles.container}>
             <TouchableOpacity style={styles.moreButton} onPress={onDetail}>
@@ -69,7 +75,7 @@ const styles = StyleSheet.create({
         marginRight: 5,
     },
     deleteButton: {
-        backgroundColor: '#dc3545', // Red color for delete button
+        backgroundColor: '#dc3545',
     },
     buttonText: {
         color: '#fff',
@@ -88,7 +94,6 @@ const styles = StyleSheet.create({
     descriptionText: {
         fontSize: 10
     },
-    //
     moreButton: { alignSelf: 'flex-end', justifyContent: 'center', alignItems: 'center', backgroundColor: 'black', borderRadius: 5, padding: 6 },
     moreText: { fontSize: 10, color: "#da0b0b", fontWeight: "bold" },
     contentContainer: {

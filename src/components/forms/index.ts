@@ -1,2 +1,2 @@
-export { default as PostForm} from './PostForm'
+export { default as AddPostForm } from './AddPostForm'
 export { default as EditPostForm } from './EditPostForm'

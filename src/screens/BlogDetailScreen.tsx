@@ -1,15 +1,24 @@
-
+import React from 'react';
+import { useNavigation } from '@react-navigation/native';
 import { BlogDetailLayout } from '../components';
+import { StackScreensProps } from '../navigations/DashboardStackNvigator';
 
-const BlogScreen = ({ route }) => {
-    const { item } = route.params;
+
+const BlogDetailScreen = ({ route }:StackScreensProps <"BlogDetail">)=> {
+
+    const navigation = useNavigation();
+    const handleBackNavigation = () => {
+        navigation.goBack();
+    };
+
     return (
         <BlogDetailLayout
-            title={item.name}
-            description={item.content}
-            category={item.category}
+            title={route?.params?.name}
+            description={route?.params?.content}
+            category={route?.params?.category}
+            handeBack={handleBackNavigation}
         />
     );
 };
 
-export default BlogScreen;
+export default BlogDetailScreen;
