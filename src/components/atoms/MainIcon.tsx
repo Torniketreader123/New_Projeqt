@@ -7,19 +7,18 @@ interface IconButtonProps {
     size?: number;
     color?: string;
 }
-
-const Mainicon = ({ icon, size, color }: IconButtonProps) => {
+const IconMain = ({icon ,size,color}: IconButtonProps) => {
     return (
         <View style={styles.container}>
             <Icon name={icon} size={size} color={color} />
+
         </View>
     );
 };
-
 const styles = StyleSheet.create({
     container: {
         padding: 2,
     },
 });
 
-export default Mainicon;
+export default IconMain;

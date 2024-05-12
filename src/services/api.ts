@@ -1,5 +1,3 @@
-
-
 import {
     createApi, fetchBaseQuery, retry, BaseQueryFn,
     FetchArgs,
@@ -7,7 +5,7 @@ import {
 } from "@reduxjs/toolkit/query/react";
 
 const baseQuery = fetchBaseQuery({
-    baseUrl: "http://localhost:3000",
+    baseUrl: "https://ardi-test-back-1c8840b2f462.herokuapp.com",
 });
 
 
@@ -22,20 +20,15 @@ const customFetchBase: BaseQueryFn<
 };
 
 
-const baseQueryWithRetry = retry(customFetchBase, { maxRetries: 4 });
+const baseQueryWithRetry = retry(customFetchBase, { maxRetries: 1 });
 
 export const api = createApi({
     refetchOnReconnect: true,
     refetchOnFocus: true,
     reducerPath: "rootApi",
     baseQuery: baseQueryWithRetry,
-    endpoints: (build) => ({
-        getPost: build.query<any, void>({
-            query: () => ({ url: "/blog-post" }),
-        }),
-    }),
+    endpoints: () => ({}),
 });
 
-export const { useGetPostQuery } = api;
 
 
